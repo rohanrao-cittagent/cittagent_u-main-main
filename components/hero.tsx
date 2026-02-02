@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, X } from "lucide-react";
 
 import { LivePulse } from "@/components/live-pulse";
 
@@ -16,6 +16,7 @@ const words = [
 
 export function Hero() {
     const [index, setIndex] = useState(0);
+    const [isVideoOpen, setIsVideoOpen] = useState(false); // Video modal state
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -86,7 +87,12 @@ export function Hero() {
                         <Button size="lg" className="h-12 px-8 text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all rounded-full">
                             Request Demo <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
-                        <Button size="lg" variant="outline" className="h-12 px-8 text-lg rounded-full border-primary/50 text-foreground hover:bg-primary/10">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="h-12 px-8 text-lg rounded-full border-primary/50 text-foreground hover:bg-primary/10"
+                            onClick={() => setIsVideoOpen(true)}
+                        >
                             <PlayCircle className="mr-2 h-5 w-5" /> See How It Works
                         </Button>
                     </motion.div>
@@ -106,6 +112,40 @@ export function Hero() {
                     <LivePulse />
                 </motion.div>
             </div>
+
+            {/* Video Modal */}
+            <AnimatePresence>
+                {isVideoOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+                        onClick={() => setIsVideoOpen(false)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                onClick={() => setIsVideoOpen(false)}
+                                className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-md transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+                            <video
+                                src="/Energy_Intelligence.mp4"
+                                className="w-full h-full object-contain"
+                                controls
+                                autoPlay
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
