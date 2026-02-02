@@ -13,7 +13,7 @@ export function Navbar() {
         <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-4 bg-black/40 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
             <div className="relative flex items-center">
                 {/* Placeholder to reserve horizontal space */}
-                <div className="w-[220px] md:w-[450px] h-1" aria-hidden="true"></div>
+                <div className="w-[180px] md:w-[280px] h-1" aria-hidden="true"></div>
 
                 {/* Absolutely positioned logo allowing overflow */}
                 <Image
@@ -26,7 +26,7 @@ export function Navbar() {
                 />
             </div>
 
-            <div className="hidden md:flex items-center justify-around flex-1">
+            <div className="hidden md:flex items-center justify-center gap-16 flex-1">
                 {["Features", "Technology", "Solutions", "About"].map((item) => (
                     <Link
                         key={item}
@@ -45,7 +45,7 @@ export function Navbar() {
 
 
             {/* Desktop Placeholder for balance */}
-            <div className="hidden md:block w-[450px] h-1" aria-hidden="true"></div>
+            <div className="hidden md:block w-[280px] h-1" aria-hidden="true"></div>
 
             {/* Mobile Menu Toggle */}
             <button
