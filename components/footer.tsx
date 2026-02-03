@@ -50,7 +50,7 @@ export function Footer() {
                     <div className="col-span-1 text-center pt-16">
                         <h3 className="font-semibold mb-2">Contact</h3>
                         <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li>info@cittagent.com</li>
+                            <li>upport@cittagent.com</li>
                             <li>+91 90087 63311</li>
                         </ul>
                     </div>
